@@ -1,4 +1,4 @@
-package com.sergey5588.voicehex.client;
+package com.sergey5588.voicehex;
 
 import net.minecraft.network.RegistryByteBuf;
 import net.minecraft.network.codec.PacketCodec;
