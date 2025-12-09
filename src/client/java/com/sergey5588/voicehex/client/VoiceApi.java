@@ -137,7 +137,6 @@ public class VoiceApi {
         String result;
         synchronized (resultQueue) {
             result = resultQueue.poll();
-            MinecraftClient.getInstance().player.sendMessage(Text.of("not final: "+result));
         }
         if (result != null && !result.isEmpty()) {
             // Process the final recognition result here
