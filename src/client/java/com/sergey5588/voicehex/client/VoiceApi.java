@@ -8,6 +8,7 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.text.Text;
 import org.vosk.Model;
 import org.vosk.Recognizer;
 
@@ -136,6 +137,7 @@ public class VoiceApi {
         String result;
         synchronized (resultQueue) {
             result = resultQueue.poll();
+            MinecraftClient.getInstance().player.sendMessage(Text.of("not final: "+result));
         }
         if (result != null && !result.isEmpty()) {
             // Process the final recognition result here
