@@ -1,5 +1,6 @@
 package com.sergey5588.voicehex;
 
+import com.sergey5588.voicehex.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
@@ -18,10 +19,10 @@ import net.minecraft.util.math.Vec3i;
 import net.minecraft.world.World;
 
 public class Voicehex implements ModInitializer {
-
+    public static final String MOD_ID = "voicehex";
     @Override
     public void onInitialize() {
+        ModItems.registerModItems();
         Spells.init();
-
     }
 }
