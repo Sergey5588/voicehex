@@ -5,6 +5,7 @@ package com.sergey5588.voicehex.client;
 
 import com.google.gson.Gson;
 import com.sergey5588.voicehex.SendSpeechC2SPayload;
+import com.sergey5588.voicehex.item.custom.MagicWand;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.networking.v1.ClientPlayNetworking;
 import net.fabricmc.loader.api.FabricLoader;
@@ -20,14 +21,15 @@ import java.util.Queue;
 import java.util.logging.Logger;
 
 import static com.sergey5588.voicehex.client.VoicehexClient.LOGGER;
+import static com.sergey5588.voicehex.item.ModItems.MAGIC_WAND;
 
 
 public class VoiceApi {
     private static Gson gson = new Gson();
     private static Model model;
     private static Recognizer recognizer;
-    private static TargetDataLine microphone;
-    private static volatile boolean isListening = false;
+    public static TargetDataLine microphone;
+    public static volatile boolean isListening = false;
     private static Thread recognitionThread;
     // Thread-safe queue for results to be processed on the main Minecraft thread
     private static final Queue<String> resultQueue = new LinkedList<>();
@@ -48,7 +50,7 @@ public class VoiceApi {
         }
 
         ClientTickEvents.START_CLIENT_TICK.register((minecraftClient) -> {
-            VoiceApi.processResults();
+                VoiceApi.processResults();
         });
     }
 
@@ -78,7 +80,6 @@ public class VoiceApi {
             isListening = true;
             // Start recognition in a separate thread to avoid blocking the game
             recognitionThread = new Thread(() -> {
-                String lastResult = "";
                 byte[] buffer = new byte[4096]; // Audio buffer
                 while (isListening && !Thread.currentThread().isInterrupted()) {
                     int numBytesRead = microphone.read(buffer, 0, buffer.length);
