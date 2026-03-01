@@ -1,6 +1,7 @@
 plugins {
     id 'fabric-loom' version '1.14-SNAPSHOT'
     id 'maven-publish'
+    id "de.undercouch.download" version "5.7.0"
 }
 
 version = project.mod_version
@@ -45,8 +46,13 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.13.2'
 
 }
-
+tasks.register("downloadVoskModel", Download) {
+    src 'https://alphacephei.com/vosk/models/vosk-model-small-en-us-0.15.zip'
+    dest file('src/main/resources/vosk-model-small-en-us-0.15.zip')
+    overwrite false
+}
 processResources {
+    dependsOn 'downloadVoskModel'
     inputs.property "version", project.version
     inputs.property "minecraft_version", project.minecraft_version
     inputs.property "loader_version", project.loader_version
