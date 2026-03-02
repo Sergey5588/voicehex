@@ -5,6 +5,10 @@ import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.impl.registry.sync.packet.DirectRegistryPacketHandler;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
+import net.minecraft.entity.mob.SkeletonHorseEntity;
+import net.minecraft.entity.passive.AbstractHorseEntity;
+import net.minecraft.entity.projectile.ArrowEntity;
+import net.minecraft.entity.projectile.DragonFireballEntity;
 import net.minecraft.entity.projectile.FireballEntity;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
@@ -48,6 +52,19 @@ public class Spells {
                 );
                 lightning.setPosition(spawnPos.getX()+0.5, spawnPos.getY() + 1, spawnPos.getZ()+0.5);
                 world.spawnEntity(lightning);
+            } else if (text.contains("magic missile")) {
+                double speedMultiplier = 200;
+                DragonFireballEntity fireball = new DragonFireballEntity(
+                        world,
+                        player,
+                        new Vec3d(
+                                lookVec.x * speedMultiplier, // velocityX from look vector
+                                lookVec.y * speedMultiplier, // velocityY
+                                lookVec.z * speedMultiplier // velocityZ
+                        )
+                );
+                fireball.setPosition(spawnPos.getX()+0.5, spawnPos.getY() + 1, spawnPos.getZ()+0.5);
+                world.spawnEntity(fireball);
             }
 
         }
