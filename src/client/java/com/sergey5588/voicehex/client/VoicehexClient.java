@@ -1,6 +1,7 @@
 package com.sergey5588.voicehex.client;
 
-import com.sergey5588.voicehex.client.custom.VoiceHUD;
+import com.sergey5588.voicehex.client.hud.custom.VoiceHUD;
+import com.sergey5588.voicehex.client.renderer.ModRenderers;
 import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.loader.api.FabricLoader;
@@ -46,7 +47,7 @@ public class VoicehexClient implements ClientModInitializer {
 
     @Override
     public void onInitializeClient() {
-
+        ModRenderers.init();
         File dir = new File(CONF_DIR.toString());
         if(!dir.mkdir() && !dir.exists()) {
             LOGGER.error("Failed to create dir: {}", dir.getName());

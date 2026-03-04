@@ -1,9 +1,12 @@
 package com.sergey5588.voicehex;
 
+import com.sergey5588.voicehex.entity.ModEntities;
+import com.sergey5588.voicehex.entity.custom.MagicMissile;
 import com.sergey5588.voicehex.item.ModItems;
 import net.fabricmc.api.ModInitializer;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
+import net.fabricmc.fabric.api.object.builder.v1.entity.FabricDefaultAttributeRegistry;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.LightningEntity;
@@ -20,8 +23,10 @@ import net.minecraft.world.World;
 
 public class Voicehex implements ModInitializer {
     public static final String MOD_ID = "voicehex";
+    public static final EntityType<MagicMissile> MAGIC_MISSILE_ENTITY_TYPE = ModEntities.MAGIC_MISSILE_ENTITY_TYPE;
     @Override
     public void onInitialize() {
+        ModEntities.init();
         ModItems.registerModItems();
         Spells.init();
     }

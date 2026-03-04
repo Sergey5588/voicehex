@@ -1,17 +1,12 @@
-package com.sergey5588.voicehex.client.custom;
+package com.sergey5588.voicehex.client.hud.custom;
 
 import com.sergey5588.voicehex.Voicehex;
 import com.sergey5588.voicehex.client.VoiceApi;
 import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 import net.minecraft.client.gui.DrawContext;
 import net.minecraft.client.render.RenderTickCounter;
-import net.minecraft.util.Colors;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.Util;
-import net.minecraft.util.math.ColorHelper;
-import net.minecraft.util.math.MathHelper;
-
-import java.awt.*;
 
 import static com.sergey5588.voicehex.client.VoicehexClient.MOD_ID;
 
