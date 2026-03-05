@@ -6,6 +6,8 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.loader.api.FabricLoader;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.render.entity.LightningEntityRenderer;
+import net.minecraft.client.render.entity.model.EntityModelLayer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,7 +25,6 @@ public class VoicehexClient implements ClientModInitializer {
     public static final Logger LOGGER = LoggerFactory.getLogger(MOD_ID);
     public static final Path CONF_DIR = FabricLoader.getInstance().getConfigDir().resolve(MOD_ID);
     public static Boolean canListen = true;
-
     public void unzipModel(String zipFile, String destFolder) throws IOException {
         try (ZipInputStream zis = new ZipInputStream(getClass().getResourceAsStream(zipFile))) {
             ZipEntry entry;
