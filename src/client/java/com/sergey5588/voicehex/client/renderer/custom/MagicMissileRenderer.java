@@ -28,16 +28,12 @@ public class MagicMissileRenderer extends EntityRenderer<MagicMissile> {
     private static final String GLASS = "glass";
     private static final String BASE = "base";
     private final ModelPart core;
-    private final ModelPart frame;
-    private final ModelPart bottom;
 
     public MagicMissileRenderer(EntityRendererFactory.Context context) {
         super(context);
-        this.shadowRadius = 0.5F;
+        this.shadowRadius = 0.0F;
         ModelPart modelPart = context.getPart(EntityModelLayers.END_CRYSTAL);
-        this.frame = modelPart.getChild("glass");
         this.core = modelPart.getChild("cube");
-        this.bottom = modelPart.getChild("base");
     }
 
     public static TexturedModelData getTexturedModelData() {
@@ -77,7 +73,7 @@ public class MagicMissileRenderer extends EntityRenderer<MagicMissile> {
     }
 
     static {
-        MAGIC_MISSILE_RENDER_LAYER = RenderLayer.getEntityCutoutNoCull(TEXTURE);;
+        MAGIC_MISSILE_RENDER_LAYER = RenderLayer.getEntityTranslucentEmissive(TEXTURE);
         SINE_45_DEGREES = (float)Math.sin((Math.PI / 4D));
     }
 
