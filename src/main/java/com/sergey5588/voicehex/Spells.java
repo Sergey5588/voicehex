@@ -50,9 +50,13 @@ public class Spells {
         if(context.player().getWorld() != null) {
 
             String text = payload.text();
-            context.player().sendMessage(Text.of(text));
             for(Spell s: all_spells) {
-                if(text.contains(s.name)) s.cast(context);
+                if(text.contains(s.name)) {
+                    s.cast(context);
+
+                    context.player().sendMessage(Text.of("Casting: "+s.name), true);
+                    break;
+                }
             }
 
         }
