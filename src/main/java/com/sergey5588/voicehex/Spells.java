@@ -1,6 +1,7 @@
 package com.sergey5588.voicehex;
 
 import com.sergey5588.voicehex.custom.Spell;
+import com.sergey5588.voicehex.entity.custom.MagicMissile;
 import net.fabricmc.fabric.api.networking.v1.PayloadTypeRegistry;
 import net.fabricmc.fabric.api.networking.v1.ServerPlayNetworking;
 import net.fabricmc.fabric.impl.registry.sync.packet.DirectRegistryPacketHandler;
@@ -16,6 +17,8 @@ import net.minecraft.server.world.ServerWorld;
 import net.minecraft.text.Text;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
+
+import static com.sergey5588.voicehex.entity.ModEntities.MAGIC_MISSILE_ENTITY_TYPE;
 
 public class Spells {
     public static enum SpellType {
@@ -36,9 +39,15 @@ public class Spells {
                         ),
                         5
                 );
-                fireball.setPosition(ctx.player().getX()+0.5, ctx.player().getY() + 1, ctx.player().getZ()+0.5);
+                fireball.setPosition(ctx.player().getEyePos());
                 ctx.player().getWorld().spawnEntity(fireball);
             }),
+            new Spell("magic missile", ctx -> {
+                Vec3d lookVec = ctx.player().getRotationVec(1.0F);
+                MagicMissile missile = new MagicMissile(ctx.player().getWorld(), ctx.player());
+                missile.setPosition(ctx.player().getEyePos());
+                ctx.player().getWorld().spawnEntity(missile);
+            })
     };
 
 
