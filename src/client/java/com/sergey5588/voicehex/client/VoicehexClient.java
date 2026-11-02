@@ -65,7 +65,7 @@ public class VoicehexClient implements ClientModInitializer {
 
         }
         ClientTickEvents.START_CLIENT_TICK.register((minecraftClient) -> {
-            if(MinecraftClient.getInstance().player!=null && MinecraftClient.getInstance().player.getMainHandStack().isOf(MAGIC_WAND)) {
+            if((MinecraftClient.getInstance().player!=null && MinecraftClient.getInstance().player.getMainHandStack().isOf(MAGIC_WAND)) || (!MinecraftClient.getInstance().isPaused())) {
                 if(VoiceApi.microphone!= null && !VoiceApi.microphone.isActive()) {
                     VoiceApi.microphone.flush();
                     VoiceApi.microphone.start();
