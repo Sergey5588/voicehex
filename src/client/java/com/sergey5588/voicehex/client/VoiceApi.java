@@ -160,6 +160,8 @@ public class VoiceApi {
         if(MinecraftClient.getInstance().world!=null && !text.isEmpty()) {
             SendSpeechC2SPayload payload = new SendSpeechC2SPayload(text);
             ClientPlayNetworking.send(payload);
+            if(MinecraftClient.getInstance().player!=null)
+                MinecraftClient.getInstance().player.sendMessage(Text.of("Recognized: "+text), true);
         }
 
 
