@@ -10,12 +10,13 @@ import net.minecraft.registry.Registry;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.text.Text;
 import net.minecraft.util.Identifier;
+import net.minecraft.util.Rarity;
 
 import static com.sergey5588.voicehex.Voicehex.MOD_ID;
 
 
 public class ModItems {
-    public static final Item MAGIC_WAND = registerItem("magic_wand", new Item(new Item.Settings()));
+    public static final Item MAGIC_WAND = registerItem("magic_wand", new Item(new Item.Settings().maxDamage(100).rarity(Rarity.EPIC)));
 
     public static final RegistryKey<ItemGroup> CUSTOM_ITEM_GROUP_KEY = RegistryKey.of(Registries.ITEM_GROUP.getKey(), Identifier.of(MOD_ID, "item_group"));
     public static final ItemGroup CUSTOM_ITEM_GROUP = FabricItemGroup.builder()
